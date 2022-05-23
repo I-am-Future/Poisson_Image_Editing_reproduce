@@ -1,7 +1,6 @@
 # This file contains some utilities for the main pie processing of the images: 
 
 import numpy as np
-import cv2
 from typing import Tuple
 
 def get_neighbor(h, w, max_h, max_w) -> set:
@@ -59,10 +58,13 @@ def guide_vec(p_h: int, p_w: int, q_h: int, q_w: int,
     src_q_h = q_h - offset[0]
     src_q_w = q_w - offset[1]
     try:
+        # test if src's index is legal (not at edge)
         int(src[src_p_h, src_p_w]) - int(src[src_q_h, src_q_w])
     except:
+        # return f* 's gradient
         return int(bkg[p_h, p_w]) - int(bkg[q_h, q_w])
     else:
+        # return with the larger norm one
         if (abs(int(bkg[p_h, p_w]) - int(bkg[q_h, q_w])) > 
                 abs(int(src[src_p_h, src_p_w]) - int(src[src_q_h, src_q_w]))):
             return int(bkg[p_h, p_w]) - int(bkg[q_h, q_w])

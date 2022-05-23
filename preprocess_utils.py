@@ -14,7 +14,9 @@ def rescale(in_fname: str, out_fname: str, new_size: tuple, domain_axis: int) ->
         @param in_fname: <str>, the input filename
         @param out_fname: <str>, the input filename
         @param new_size: <tuple(height, width)>, the new size (pixels) of the image
-        @param domain_axis: this param is used in equal-rescaling. For free rescaling, set to -1.
+        @param domain_axis: For free rescaling, set to -1. For equal-ratio rescaling, set to 0/1.  \
+            For example, if you want new_size depends on axis=0, set it to 0.  \
+            Then axis1 will be automatically adjusted by axis0.
     '''
     assert( len(new_size) == 2 )
     img = cv2.imread(in_fname)
@@ -62,4 +64,4 @@ def generate_mask(in_fname: str) -> None:
 
 # USE samples:
 # rescale('imgs/1_original_src1.jpg', 'imgs/1_src1.jpg', (100, 400), 1)
-generate_mask('imgs/1_src1.jpg')
+# generate_mask('imgs/1_src1.jpg')
