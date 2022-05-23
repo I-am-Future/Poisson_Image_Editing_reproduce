@@ -7,11 +7,11 @@ def get_neighbor(h, w, max_h, max_w) -> set:
     ''' Returns the neighbor index array of given point (h, w) '''
     res = [(h-1, w), (h+1, w), (h, w-1), (h, w+1)]
     valid = [True] * 4
-    if h <= 0:      valid[0] = False
-    elif h >= max_w-1:  valid[1] = False
-    if w <= 0:      valid[2] = False
-    elif w >= max_h-1:  valid[3] = False
     retval = set()
+    if h <= 0:          valid[0] = False
+    elif h >= max_w-1:  valid[1] = False
+    if w <= 0:          valid[2] = False
+    elif w >= max_h-1:  valid[3] = False
     for i in range(4):
         if valid[i]:
             retval.add(res[i])
