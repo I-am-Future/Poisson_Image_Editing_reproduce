@@ -11,11 +11,9 @@ A reproduce repository to the classic computer graphics paper: "Poisson Image Ed
 + Programming Language:
 `python 3.x`
 + Package Required:
-`numpy`
-`python-opencv` (`cv2`)
-`scipy`
+`numpy`, `python-opencv` (`cv2`), `scipy`
 
-​		All packages above can be installed with `pip install <pachage name>`. 
+​		All packages above can be installed with `pip install <package name>`. 
 
 ## Usage
 
@@ -31,5 +29,5 @@ A reproduce repository to the classic computer graphics paper: "Poisson Image Ed
 
 ​	See `main.py` for the program: Pass the *background image* (array, with size $w \times h \times 3$), and *source image* (array, with size $w' \times h' \times 3$), and the *source mask* (array, with size $w'' \times h''$), with the *output file name* to the main function `PIE()`, and let it calculates. The process may last several to tens of seconds depending on your image size. 
 
-​	All implementation are in `pie_functions.py`. 
+​	All implementations are in `pie_functions.py`. 
 
