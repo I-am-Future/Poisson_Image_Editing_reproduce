@@ -1,4 +1,4 @@
-# This file has some utilities for pre-processing the images: 
+# This file contains some utilities for pre-processing the images: 
 #  - background image: 
 #    = re-scaling
 #  - source image: 
@@ -37,6 +37,7 @@ def generate_mask(in_fname: str) -> None:
         if event == cv2.EVENT_MOUSEMOVE and flags == cv2.EVENT_FLAG_LBUTTON:
             cv2.circle(mask, (x, y), 8, (255, 255, 255), -1)
             cv2.circle(img, (x, y), 8, (255, 255, 255), -1)
+            print(x, y)
         elif event == cv2.EVENT_LBUTTONUP:
             cv2.destroyWindow('mask gen')
             cv2.namedWindow('mask gen')
@@ -52,11 +53,13 @@ def generate_mask(in_fname: str) -> None:
     cv2.imshow('mask gen', img)
 
     while(True):
-        if cv2.waitKey(20)&0xFF==ord('q'):
+        if cv2.waitKey(20)&0xFF==ord('s'):
             cv2.destroyAllWindows()
             cv2.imwrite(in_fname.split('.')[0] + '_mask.jpg', mask)
             break
+        elif cv2.waitKey(20)&0xFF==ord('q'):
+            cv2.destroyAllWindows()
 
-
+# USE samples:
 # rescale('imgs/1_original_src1.jpg', 'imgs/1_src1.jpg', (100, 400), 1)
 generate_mask('imgs/1_src2.jpg')
