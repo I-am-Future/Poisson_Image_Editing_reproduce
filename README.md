@@ -23,11 +23,11 @@ A reproduce repository to the classic computer graphics paper: "Poisson Image Ed
 
 1. `rescale()` can help you rescaling the image, and 
 
-2. `generate_mask()` can help you generating a mask over the source image. Use mouse to draw the mask (it will appear when you leave the mouse left button), and use `s` to save the mask, use `q` to quit. 
+2. `generate_mask()` can help you generating a mask over the source image. Use mouse to draw the mask (it will appear in-time on the screen), and use `s` to save the mask, use `q` to quit. 
 
 + Main processing
 
-​	See `main.py` for the program: Pass the *background image* (array, with size $w \times h \times 3$), and *source image* (array, with size $w' \times h' \times 3$), and the *source mask* (array, with size $w'' \times h''$), with the *output file name* to the main function `PIE()`, and let it calculates. The process may last several, to tens of seconds depending on your image size. 
+​	See `main.py` for the program: Pass the *background image* (array, with size $w \times h \times 3$), and *source image* (array, with size $w' \times h' \times 3$), and the *source mask* (array, with size $w' \times h'$), and *offset* (tuple<int, int>), with the *output file name* to the main function `PIE()`, and let it calculates. The process may last several, to tens of seconds depending on your image size. 
 
 ​	All main algorithm implementations are in `pie_functions.py`. 
 
