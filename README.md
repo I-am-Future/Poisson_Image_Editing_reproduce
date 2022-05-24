@@ -27,7 +27,7 @@ A reproduce repository to the classic computer graphics paper: "Poisson Image Ed
 
 + Main processing
 
-​	See `main.py` for the program: Pass the *background image* (array, with size $w \times h \times 3$), and *source image* (array, with size $w' \times h' \times 3$), and the *source mask* (array, with size $w'' \times h''$), with the *output file name* to the main function `PIE()`, and let it calculates. The process may last several, to tens of seconds depending on your image size. 
+​	See `main.py` for the program: Pass the *background image* (array, with size $w \times h \times 3$), and *source image* (array, with size $w' \times h' \times 3$), and the *source mask* (array, with size $w' \times h'$), and *offset* (tuple<int, int>), with the *output file name* to the main function `PIE()`, and let it calculates. The process may last several, to tens of seconds depending on your image size. 
 
 ​	All main algorithm implementations are in `pie_functions.py`. 
 
