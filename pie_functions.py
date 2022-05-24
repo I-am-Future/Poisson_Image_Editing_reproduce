@@ -8,15 +8,16 @@ import pie_utils
 
 
 def PIE_kernel(
-        bkg: np.ndarray,   # the background image
-        omega: np.ndarray, # the overwrite region `Omega`
-        omega_set: set,    # the region `Omega`, in set(<y, x>) form
-        pos2idx: dict,     # dict to remember position-index mapping
-        idx2pos: dict,     # dict to remember index-position mapping
+        bkg: np.ndarray,        # the background image
+        omega: np.ndarray,      # the overwrite region `Omega`
+        omega_set: set,         # the region `Omega`, in set(<y, x>) form
+        pos2idx: dict,          # dict to remember position-index mapping
+        idx2pos: dict,          # dict to remember index-position mapping
         omega_bounder_set: set, # `Omega` boundary, in set(<y, x>) form
-        src: np.ndarray,   # source (overwritten) image
-        offset: tuple      # relative offset between source image and background. 
-    ):
+        src: np.ndarray,        # source (overwritten) image
+        offset: tuple,          # relative offset between source image and background. 
+        pickled: bool = False   # whether save the sol `x` or not
+    ) -> None:
     ''' PIE algorithm kernel function, for 1 channel processing. '''
     bkg = bkg.copy()
     A = lil_matrix(np.zeros((len(omega_set), len(omega_set))))
@@ -40,6 +41,8 @@ def PIE_kernel(
         b[i, 0] = rhs
     print('Equation construction finished!')
     x = spsolve(csc_matrix(A), b)
+    if pickled:
+        np.save('x.npy', x)
     x = np.maximum(x, 0)
     x = np.minimum(x, 255)
     for i in range(len(x)):

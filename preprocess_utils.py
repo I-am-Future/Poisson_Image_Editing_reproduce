@@ -40,11 +40,11 @@ def generate_mask(in_fname: str) -> None:
             cv2.circle(mask, (x, y), 8, (255, 255, 255), -1)
             cv2.circle(img, (x, y), 8, (255, 255, 255), -1)
             # print(x, y)
-        elif event == cv2.EVENT_LBUTTONUP:
-            cv2.destroyWindow('mask gen')
-            cv2.namedWindow('mask gen')
-            cv2.setMouseCallback('mask gen',callback)
             cv2.imshow('mask gen', img)
+        # elif event == cv2.EVENT_LBUTTONUP:
+        #     cv2.destroyWindow('mask gen')
+        #     cv2.namedWindow('mask gen')
+        #     cv2.setMouseCallback('mask gen',callback)
 
     img = cv2.imread(in_fname)
     h, w, _ = img.shape
@@ -61,7 +61,8 @@ def generate_mask(in_fname: str) -> None:
             break
         elif cv2.waitKey(20)&0xFF==ord('q'):
             cv2.destroyAllWindows()
+            break
 
 # USE samples:
 # rescale('imgs/1_original_src1.jpg', 'imgs/1_src1.jpg', (100, 400), 1)
-# generate_mask('imgs/1_src1.jpg')
+generate_mask('imgs/1_src1.jpg')
