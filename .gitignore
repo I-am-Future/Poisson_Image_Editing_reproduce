@@ -2,3 +2,7 @@ __pycache__/
 *.npy
 *.bin
 further_research.py
+test.py
+imgs/1_src3.jpg
+imgs/1_src3_mask.jpg
+imgs/1_finalb.jpg

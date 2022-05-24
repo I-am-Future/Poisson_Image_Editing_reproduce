@@ -49,7 +49,7 @@ def omegamask_to_set(mask: np.ndarray) -> Tuple[set, dict]:
     return result, pos2idx, idx2pos
 
 def guide_vec(p_h: int, p_w: int, q_h: int, q_w: int, 
-        bkg: np.ndarray, src: np.ndarray, offset: tuple) -> int:
+        bkg: np.ndarray, src: np.ndarray, offset: tuple, mixed_grad: bool = True) -> int:
     ''' A function that gives guide `v_{pq}` '''
     assert(abs(p_h-q_h) <= 1)
     assert(abs(p_w-q_w) <= 1)
@@ -57,19 +57,26 @@ def guide_vec(p_h: int, p_w: int, q_h: int, q_w: int,
     src_p_w = p_w - offset[1]
     src_q_h = q_h - offset[0]
     src_q_w = q_w - offset[1]
-    try:
-        # test if src's index is legal (not at edge)
-        int(src[src_p_h, src_p_w]) - int(src[src_q_h, src_q_w])
-    except:
-        # return f* 's gradient
-        return int(bkg[p_h, p_w]) - int(bkg[q_h, q_w])
+    if mixed_grad:
+        try:
+            # test if src's index is legal (not at edge)
+            return int(src[src_p_h, src_p_w]) - int(src[src_q_h, src_q_w])
+        except:
+            return 0 
     else:
-        # return with the larger norm one
-        if (abs(int(bkg[p_h, p_w]) - int(bkg[q_h, q_w])) > 
-                abs(int(src[src_p_h, src_p_w]) - int(src[src_q_h, src_q_w]))):
+        try:
+            # test if src's index is legal (not at edge)
+            int(src[src_p_h, src_p_w]) - int(src[src_q_h, src_q_w])
+        except:
+            # return f* 's gradient
             return int(bkg[p_h, p_w]) - int(bkg[q_h, q_w])
         else:
-            return int(src[src_p_h, src_p_w]) - int(src[src_q_h, src_q_w])
+            # return with the larger norm one
+            if (abs(int(bkg[p_h, p_w]) - int(bkg[q_h, q_w])) > 
+                    abs(int(src[src_p_h, src_p_w]) - int(src[src_q_h, src_q_w]))):
+                return int(bkg[p_h, p_w]) - int(bkg[q_h, q_w])
+            else:
+                return int(src[src_p_h, src_p_w]) - int(src[src_q_h, src_q_w])
 
 # testing
 # print(get_neighbor(10, 10, 20, 20)) # middle

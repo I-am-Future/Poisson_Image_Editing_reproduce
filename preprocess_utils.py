@@ -65,4 +65,4 @@ def generate_mask(in_fname: str) -> None:
 
 # USE samples:
 # rescale('imgs/1_original_src1.jpg', 'imgs/1_src1.jpg', (100, 400), 1)
-generate_mask('imgs/1_src1.jpg')
+# generate_mask('imgs/1_src1.jpg')
