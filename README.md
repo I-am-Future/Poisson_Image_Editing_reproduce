@@ -1,4 +1,4 @@
-# Poisson_Image_Editing
+# Poisson_Image_Editing_reproduce
 
 A reproduce repository to the classic computer graphics paper: "Poisson Image Editing" (https://doi.org/10.1145/882262.882269)
 
